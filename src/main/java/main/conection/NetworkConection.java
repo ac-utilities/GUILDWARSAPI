@@ -29,7 +29,7 @@ public class NetworkConection {
     }
 
     public static String getEndpoint(String endpoint) throws Exception {
-        String token = String.format("?access_token=%s", Keys.TOKEN);
+        String token = String.format("?access_token=%s", Keys.getTOKEN());
         return getEndpointWithoutToken(endpoint.concat(token));
     }
 
