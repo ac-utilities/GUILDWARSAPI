@@ -1,23 +1,27 @@
 package main.guildwars;
 
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import org.json.simple.JSONArray;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 @XmlRootElement
 public class CharacterInventory {
-    public JSONArray getBags() {
+
+    public List<BagItem> getBags() {
         return bags;
     }
 
-    public void setBags(JSONArray bags) {
+    public void setBags(ArrayList<BagItem> bags) {
         this.bags = bags;
     }
 
-    private JSONArray bags;
+    private List<BagItem> bags;
 
+    @IgnoreForBinding
     public String getItemIds() {
         ArrayList<String> arrayList = new ArrayList<String>();
         for(Object tmp :bags){
