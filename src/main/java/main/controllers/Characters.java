@@ -119,6 +119,7 @@ public class Characters {
         try {
             String response = NetworkConection.getEndpoint(getURL);
             equipment = new ObjectMapper().readValue(response, CharacterInventory.class);
+            equipment.cleanUpData();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {

@@ -21,20 +21,28 @@ public class CharacterInventory {
 
     private List<BagItem> bags;
 
-    @IgnoreForBinding
     public String getItemIds() {
         ArrayList<String> arrayList = new ArrayList<String>();
-        for(Object tmp :bags){
-            arrayList.add(((LinkedHashMap) tmp).get("id").toString());
-            ArrayList inventory = (ArrayList) ((LinkedHashMap) tmp).get("inventory");
+        for(BagItem bagItem :bags){
+            arrayList.add( String.valueOf(bagItem.getId()));
+            List<ItemLookup> inventory = bagItem.getInventory();
             if(inventory != null) {
-                for (Object item : inventory) {
+                for (ItemLookup item : inventory) {
                     if (item != null) {
-                        arrayList.add(((LinkedHashMap) item).get("id").toString());
+                        arrayList.add(String.valueOf(item.getId()));
                     }
                 }
             }
         }
         return String.join(",",arrayList);
     }
+     public void cleanUpData(){
+         for ( BagItem bagItem: this.bags ) {
+             List<ItemLookup> inventory = bagItem.getInventory();
+             while(inventory.contains(null)){
+                 inventory.remove(null);
+             }
+
+         }
+     }
 }
