@@ -71,7 +71,7 @@ public class Characters {
     @ApiOperation(value = "crafting", response = CharacterCrafting.class)
     public CharacterCrafting crafting(@RequestParam(value="name") String name ){
 
-        String endPoint = String.format("/v2/characters/%s/crafting",name);
+        String endPoint = String.format("v2/characters/%s/crafting",name);
         String getURL = String.format("%s%s", Keys.BASE, endPoint);
         CharacterCrafting characterCrafting = null;
 
@@ -91,7 +91,7 @@ public class Characters {
     @ApiOperation(value = "equipment", response = Equipment.class)
     public Equipment equipment(@RequestParam(value="name") String name ){
 
-        String endPoint = String.format("/v2/characters/%s/equipment",name);
+        String endPoint = String.format("v2/characters/%s/equipment",name);
         String getURL = String.format("%s%s", Keys.BASE, endPoint);
         Equipment equipment = null;
 
@@ -112,7 +112,7 @@ public class Characters {
     @ApiOperation(value = "inventory", response = CharacterInventory.class)
     public CharacterInventory inventory(@RequestParam(value="name") String name ){
 
-        String endPoint = String.format("/v2/characters/%s/inventory",name);
+        String endPoint = String.format("v2/characters/%s/inventory",name);
         String getURL = String.format("%s%s", Keys.BASE, endPoint);
         CharacterInventory equipment = null;
 
