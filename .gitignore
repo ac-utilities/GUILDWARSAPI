@@ -1,5 +1,4 @@
 
 target*
-.idea\*
-src/main/resources/token.properties
 .idea*
+src/main/resources/token.properties
