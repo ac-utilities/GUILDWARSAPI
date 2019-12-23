@@ -49,7 +49,7 @@ public class Items {
 
     @GetMapping("getCharacterItems")
     @ApiOperation(value = "getCharacterItems", response = ItemDetails.class)
-    public ItemDetails getCharacterItems(@RequestParam(value="name") String name ){
+    public ItemDetails getCharacterItems(@RequestParam(value="name") String name,@RequestParam(value="accountName") String accountName ){
 
 
         String endPoint = String.format("/v2/characters/%s/inventory",name);
@@ -57,7 +57,7 @@ public class Items {
         CharacterInventory equipment = null;
 
         try {
-            String response = NetworkConection.getEndpoint(getURL);
+            String response = NetworkConection.getEndpoint(getURL,accountName);
             equipment = new ObjectMapper().readValue(response, CharacterInventory.class);
         } catch (IOException e) {
             e.printStackTrace();

@@ -33,5 +33,11 @@ public class NetworkConection {
         return getEndpointWithoutToken(endpoint.concat(token));
     }
 
+    public static String getEndpoint(String endpoint,String account) throws Exception {
+        String token = String.format("?access_token=%s", Keys.getTOKEN(account));
+        return getEndpointWithoutToken(endpoint.concat(token));
+    }
+
+
 
 }

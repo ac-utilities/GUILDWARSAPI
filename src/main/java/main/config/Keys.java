@@ -15,7 +15,21 @@ public class Keys {
         Properties prop = new Properties();
         try {
             prop.load(inputStream);
-            return prop.getProperty("token");
+            return prop.getProperty("default");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    public static String getTOKEN(String tokenName){
+
+        InputStream inputStream = Keys.class.getClassLoader().getResourceAsStream("token.properties");
+
+        Properties prop = new Properties();
+        try {
+            prop.load(inputStream);
+            return prop.getProperty(tokenName);
         } catch (IOException e) {
             e.printStackTrace();
         }

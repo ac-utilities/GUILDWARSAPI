@@ -8,6 +8,7 @@ import main.conection.NetworkConection;
 import main.config.Keys;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.BufferedReader;
@@ -25,13 +26,13 @@ public class Account {
 
     @GetMapping("all")
     @ApiOperation(value = "getAll", response = main.guildwars.Account.class)
-    public main.guildwars.Account allItems(){
+    public main.guildwars.Account allItems(@RequestParam(value="accountName") String accountName){
         String endPoint = "v2/account";
         String getURL = String.format("%s%s", Keys.BASE, endPoint);
         main.guildwars.Account account = null;
 
         try {
-            String response = NetworkConection.getEndpoint(getURL);
+            String response = NetworkConection.getEndpoint(getURL,accountName);
             account = new ObjectMapper().readValue(response, main.guildwars.Account.class);
         } catch (Exception e) {
             e.printStackTrace();

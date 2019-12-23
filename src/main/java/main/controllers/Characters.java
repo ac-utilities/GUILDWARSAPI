@@ -24,7 +24,7 @@ public class Characters {
 
     @GetMapping("all")
     @ApiOperation(value = "allNames", response = CharacterNames.class)
-    public CharacterNames allNames(){
+    public CharacterNames allNames(@RequestParam(value="accountName") String accountName){
         String endPoint = "v2/characters";
         String getURL = String.format("%s%s", Keys.BASE, endPoint);
 
@@ -32,7 +32,7 @@ public class Characters {
         CharacterNames characterNames = null;
 
         try {
-            String response = NetworkConection.getEndpoint(getURL);
+            String response = NetworkConection.getEndpoint(getURL, accountName);
             jsonArray = new ObjectMapper().readValue(response, JSONArray.class);
 
             characterNames = new CharacterNames(jsonArray);
@@ -48,7 +48,7 @@ public class Characters {
 
     @GetMapping("core")
     @ApiOperation(value = "core", response = CharacterCore.class)
-    public CharacterCore core(@RequestParam(value="name") String name ){
+    public CharacterCore core(@RequestParam(value="name") String name,@RequestParam(value="accountName") String accountName ){
 
 
         String endPoint = String.format("/v2/characters/%s/core",name);
@@ -56,7 +56,7 @@ public class Characters {
         CharacterCore characterCore = null;
 
         try {
-            String response = NetworkConection.getEndpoint(getURL);
+            String response = NetworkConection.getEndpoint(getURL,accountName);
             characterCore = new ObjectMapper().readValue(response, CharacterCore.class);
         } catch (IOException e) {
             e.printStackTrace();
@@ -69,14 +69,14 @@ public class Characters {
 
     @GetMapping("crafting")
     @ApiOperation(value = "crafting", response = CharacterCrafting.class)
-    public CharacterCrafting crafting(@RequestParam(value="name") String name ){
+    public CharacterCrafting crafting(@RequestParam(value="name") String name,@RequestParam(value="accountName") String accountName ){
 
         String endPoint = String.format("v2/characters/%s/crafting",name);
         String getURL = String.format("%s%s", Keys.BASE, endPoint);
         CharacterCrafting characterCrafting = null;
 
         try {
-            String response = NetworkConection.getEndpoint(getURL);
+            String response = NetworkConection.getEndpoint(getURL,accountName);
             characterCrafting = new ObjectMapper().readValue(response, CharacterCrafting.class);
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,14 +89,14 @@ public class Characters {
 
     @GetMapping("equipment")
     @ApiOperation(value = "equipment", response = Equipment.class)
-    public Equipment equipment(@RequestParam(value="name") String name ){
+    public Equipment equipment(@RequestParam(value="name") String name ,@RequestParam(value="accountName") String accountName){
 
         String endPoint = String.format("v2/characters/%s/equipment",name);
         String getURL = String.format("%s%s", Keys.BASE, endPoint);
         Equipment equipment = null;
 
         try {
-            String response = NetworkConection.getEndpoint(getURL);
+            String response = NetworkConection.getEndpoint(getURL,accountName);
             equipment = new ObjectMapper().readValue(response, Equipment.class);
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,14 +110,14 @@ public class Characters {
 
     @GetMapping("inventory")
     @ApiOperation(value = "inventory", response = CharacterInventory.class)
-    public CharacterInventory inventory(@RequestParam(value="name") String name ){
+    public CharacterInventory inventory(@RequestParam(value="name") String name,@RequestParam(value="accountName") String accountName ){
 
         String endPoint = String.format("v2/characters/%s/inventory",name);
         String getURL = String.format("%s%s", Keys.BASE, endPoint);
         CharacterInventory equipment = null;
 
         try {
-            String response = NetworkConection.getEndpoint(getURL);
+            String response = NetworkConection.getEndpoint(getURL,accountName);
             equipment = new ObjectMapper().readValue(response, CharacterInventory.class);
             equipment.cleanUpData();
         } catch (IOException e) {
